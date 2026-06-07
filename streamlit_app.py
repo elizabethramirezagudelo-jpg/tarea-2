@@ -117,9 +117,11 @@ st.write("---")
 st.subheader("Rendimiento con la configuración actual de pesos")
 st.write("Compara cómo rinden todas las imágenes simultáneamente con tus 'perillas' actuales:")
 
-columnas_tabla = st.columns(6)
+num_imagenes = len(imagenes)
+columnas_tabla = st.columns(num_imagenes)
+
 for idx, (nombre, img) in enumerate(imagenes.items()):
-    with columnas_tabla[idx]:
+    with columnas_tabla[idx]: # Ahora 'idx' nunca superará el límite
         # Calcular puntaje
         p = sum(img[i][j] * w[i][j] for i in range(3) for j in range(3))
         es_t_real = "Positiva" in nombre
